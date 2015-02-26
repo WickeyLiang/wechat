@@ -324,7 +324,20 @@ public class CoreService {
 				}else if(eventType.equals(MessageUtil.EVENT_TYPE_UNSUBSCRIBE)){
 					 // TODO 取消订阅后用户再收不到公众号发送的消息，因此不需要回复消息 
 				}else if(eventType.equals(MessageUtil.EVENT_TYPE_CLICK)){
-					// TODO 自定义菜单权没有开放，暂不处理该类消息  
+					// TODO 自定义菜单
+					String eventKey = requestMap.get("EventKey");
+					
+					if(eventKey.equals("11")){
+						respContent = "天气预报菜单按钮被点击！";
+					}else if(eventKey.equals("12")){
+						respContent = "公交查询菜单按钮";
+					}else if(eventKey.equals("13")){
+						respContent = "我在哪菜单按钮";
+					}else if(eventKey.equals("21")){
+						respContent = "我要点歌菜单按钮";
+					}else if(eventKey.equals("31")){
+						respContent = "个人测试，回复？有更多帮助";
+					}
 				}
 			}
 			

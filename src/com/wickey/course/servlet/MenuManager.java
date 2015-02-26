@@ -51,6 +51,11 @@ public class MenuManager {
 		btn12.setType("click");
 		btn12.setKey("12");
 		
+		CommonButton btn13 = new CommonButton();
+		btn13.setName("我在哪");
+		btn13.setType("click");
+		btn13.setKey("13");
+		
 		CommonButton btn21 = new CommonButton();
 		btn21.setName("我要点歌");
 		btn21.setType("click");
