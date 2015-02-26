@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 import com.wickey.course.bean.tulingbean.AirBean;
@@ -39,6 +40,8 @@ public class CoreService {
 	 * @param request
 	 * @return
 	 */
+	private static Logger logger = Logger.getLogger(CoreService.class);
+	
 	
 	public static String processRequest(HttpServletRequest request){
 		String respMessage = null;
@@ -48,6 +51,7 @@ public class CoreService {
 			List respContent1 = null;
 			//xml请求解析
 			Map<String,String> requestMap = MessageUtil.parseXml(request);
+			logger.info("收到微信服务器的发来信息：\n"+requestMap.toString());
 			//发送方账号（open_id）
 			String fromUserName = requestMap.get("FromUserName");
 			//公众账号
@@ -68,11 +72,11 @@ public class CoreService {
 			if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)){
 				
 				if(content.equals("?")||content.equals("？")){
-					String resp1 = "1.可回复如：“打开百度”，获取网站链接。\n";
-					String resp2 = "2.可回复如：“我要看娱乐新闻”，得知最新新闻内容。\n";
-					String resp3 = "3.可回复如：“北京到上海的火车（或航班）”，得知最新消息。\n";
-					String resp4 = "4.可回复如：“北京中关村附近的酒店”，得到酒店消息。\n";
-					String resp5 = "5.可回复电影、视频、小说、菜价得到不同类别信息。\n";
+					String resp1 = "1.回复如：“打开百度”，获取网站链接。\n";
+					String resp2 = "2.回复如：“我要看娱乐新闻”，得知最新新闻内容。\n";
+					String resp3 = "3.回复如：“北京到上海的火车（或航班）”，得知最新消息。\n";
+					String resp4 = "4.回复如：“北京中关村附近的酒店”，得到酒店消息。\n";
+					String resp5 = "5.回复电影、视频、小说、菜价得到不同类别信息。\n";
 					String resp6 = "6.最后还可以和我吹吹水。。。24小时奉陪！"+WeixinUtil.emoji(0x1F609);
 					respContent = resp1+resp2+resp3+resp4+resp5+resp6;
 					textMessage.setContent(respContent);

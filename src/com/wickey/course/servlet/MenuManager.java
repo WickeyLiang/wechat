@@ -1,7 +1,8 @@
 package com.wickey.course.servlet;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
+import org.apache.log4j.Logger;
 
 import com.wickey.course.bean.pojo.AccessToken;
 import com.wickey.course.bean.pojo.Button;
@@ -12,15 +13,16 @@ import com.wickey.course.util.WeixinUtil;
 
 public class MenuManager {
 	
-	private static Logger log = LoggerFactory.getLogger(MenuManager.class);
+	private Logger logger = Logger.getLogger(this.getClass());
 	
 	
 	public void init(){
 		//第三方用户唯一凭证
-		String appId = "wx26370891564f6f7f";
+		//String appId = "wx26370891564f6f7f";
+		String appId = "wx668290fdbd99f4d2";
 		//第三方用户唯一凭证密钥
-		String appSecret = "74e670576d6abbcd5d40f45d758a4490";
-		
+		//String appSecret = "74e670576d6abbcd5d40f45d758a4490";
+		String appSecret = "0a721e7a3751fa33525ac0c2aac855d1";
 		//调用接口获取access_token
 		AccessToken at = WeixinUtil.getAccessToken(appId, appSecret);
 		
@@ -30,9 +32,9 @@ public class MenuManager {
 			
 			//判断菜单创建结果
 			if(0 == result){
-				log.info("菜单创建成功！");
+				logger.info("菜单创建成功！");
 			}else{
-				log.info("菜单创建失败，错误码："+ result);
+				logger.info("菜单创建失败，错误码："+ result);
 			}
 		}
 				

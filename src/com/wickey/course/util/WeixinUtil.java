@@ -12,10 +12,11 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 
+import org.apache.log4j.Logger;
+
 import net.sf.json.JSONObject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import com.wickey.course.bean.pojo.AccessToken;
 import com.wickey.course.bean.pojo.Menu;
@@ -31,7 +32,7 @@ import com.wickey.course.bean.pojo.Menu;
 
 
 public class WeixinUtil {
-	private static Logger log = LoggerFactory.getLogger(WeixinUtil.class);
+	private static Logger logger = Logger.getLogger(WeixinUtil.class);
 	
 	/**
 	 * 发起https请求并获取结果
@@ -96,10 +97,10 @@ public class WeixinUtil {
             jsonObject = JSONObject.fromObject(buffer.toString());
 			
 		} catch (ConnectException e){
-			log.error("wechat server connection timed out");
+			logger.error("wechat server connection timed out");
 		} catch (Exception e) {
 			// TODO: handle exception
-			log.error("https request error:{}",e);
+			logger.error("https request error:{}",e);
 		}
 		
 		return jsonObject;
@@ -123,13 +124,14 @@ public class WeixinUtil {
 		String requestUrl = access_token_url.replace("APPID", appid).replace("APPSECRET", appsecret);
 		JSONObject jsonObject = httpRequest(requestUrl, "GET", null);
 		if(null != jsonObject){
+			logger.info("收到的access_token："+jsonObject.getString("access_token")+"\n收到的expires_in："+jsonObject.getInt("expires_in"));
 			try {
 				accessToken = new AccessToken();
 				accessToken.setToken(jsonObject.getString("access_token"));
 				accessToken.setExpiresIn(jsonObject.getInt("expires_in"));
 			} catch (Exception e) {
 				accessToken = null;
-				log.error("获取token失败，errcode:{} errmsg:{}",jsonObject.getString("errcode"),jsonObject.getString("errmsg"));
+				logger.error("获取token失败，errcode:{"+jsonObject.getString("errcode")+"} errmsg:{"+jsonObject.getString("errmsg")+"}");
 				
 				// TODO: handle exception
 			}
@@ -152,13 +154,14 @@ public class WeixinUtil {
 		String url = menu_create_url.replace("ACCESS_TOKEN", accessToken);
 		//将菜单对象转换成json字符串
 		String jsonMenu = JSONObject.fromObject(menu).toString();
+		logger.info("jsonmenu字符串：\n"+JSONObject.fromObject(menu).toString());
 		//调用接口创建菜单
 		JSONObject jsonObject = httpRequest(url, "POST", jsonMenu);
 		
 		if(null != jsonObject){
 			if(0 != jsonObject.getInt("errcode")){
 				result = jsonObject.getInt("errcode");
-				log.error("创建菜单失败 errcode:{} errmsg:{}", jsonObject.getInt("errcode"), jsonObject.getString("errmsg"));  
+				logger.error("创建菜单失败，errcode:{"+jsonObject.getString("errcode")+"} errmsg:{"+jsonObject.getString("errmsg")+"}");
 			        
 			}
 		}
