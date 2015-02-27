@@ -18,6 +18,8 @@ public class BaseMessage {
 	private String MsgType;
 	//消息id，64位整型
 	private long MsgId;
+	//企业应用id，企业号才有
+	private String AgentID;
 
 	public String getToUserName() {
 		return ToUserName;
@@ -57,6 +59,14 @@ public class BaseMessage {
 
 	public void setMsgId(long msgId) {
 		MsgId = msgId;
+	}
+
+	public String getAgentID() {
+		return AgentID;
+	}
+
+	public void setAgentID(String agentID) {
+		AgentID = agentID;
 	}
 	
 	

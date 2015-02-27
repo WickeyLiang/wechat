@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
+import com.wickey.course.bean.paramsAPI.ParaAPI;
 import com.wickey.course.bean.tulingbean.AirBean;
 import com.wickey.course.bean.tulingbean.BaseBean;
 import com.wickey.course.bean.tulingbean.HotelBean;
@@ -43,7 +44,7 @@ public class CoreService {
 	private static Logger logger = Logger.getLogger(CoreService.class);
 	
 	
-	public static String processRequest(HttpServletRequest request){
+	public static String processRequest(String request){
 		String respMessage = null;
 		try {
 			//默认返回的文本消息内容
@@ -68,6 +69,7 @@ public class CoreService {
 			textMessage.setCreateTime(new Date().getTime());
 			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
 			textMessage.setFuncFlag(0);
+			textMessage.setAgentID(ParaAPI.agentId);
 			
 			if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)){
 				
@@ -323,10 +325,10 @@ public class CoreService {
 							"在此你可以获取很多消息，详情可回复 ？";
 				}else if(eventType.equals(MessageUtil.EVENT_TYPE_UNSUBSCRIBE)){
 					 // TODO 取消订阅后用户再收不到公众号发送的消息，因此不需要回复消息 
-				}else if(eventType.equals(MessageUtil.EVENT_TYPE_CLICK)){
+				}else if(eventType.equalsIgnoreCase(MessageUtil.EVENT_TYPE_CLICK)){
 					// TODO 自定义菜单
 					String eventKey = requestMap.get("EventKey");
-					
+					logger.info("被点击按钮的key："+eventKey);
 					if(eventKey.equals("11")){
 						respContent = "天气预报菜单按钮被点击！";
 					}else if(eventKey.equals("12")){

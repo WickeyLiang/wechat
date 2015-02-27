@@ -110,6 +110,10 @@ public class WeixinUtil {
 	public final static String access_token_url="https://api.weixin.qq.com/cgi-bin/token?"
 			+ "grant_type=client_credential&appid=APPID&secret=APPSECRET";
 	
+	public final static String access_token_url_crop="https://qyapi.weixin.qq.com/cgi-bin/gettoken?"
+			+ "corpid=id&corpsecret=secrect";
+	
+	
 	/**
 	 * 获取access_token
 	 * 
@@ -120,11 +124,16 @@ public class WeixinUtil {
 	
 	public static AccessToken getAccessToken(String appid,String appsecret){
 		
+		System.out.println(appid);
 		AccessToken accessToken = null;
-		String requestUrl = access_token_url.replace("APPID", appid).replace("APPSECRET", appsecret);
+		//String requestUrl = access_token_url.replace("APPID", appid).replace("APPSECRET", appsecret);
+		String requestUrl = access_token_url_crop.replaceAll("=id", "="+appid).replace("=secrect", "="+appsecret);
+		System.out.println(requestUrl);
 		JSONObject jsonObject = httpRequest(requestUrl, "GET", null);
+		System.out.println(jsonObject.toString());
 		if(null != jsonObject){
 			logger.info("收到的access_token："+jsonObject.getString("access_token")+"\n收到的expires_in："+jsonObject.getInt("expires_in"));
+			//logger.info("收到的access_token："+jsonObject.getString("access_token"));
 			try {
 				accessToken = new AccessToken();
 				accessToken.setToken(jsonObject.getString("access_token"));
@@ -145,6 +154,9 @@ public class WeixinUtil {
 	//菜单创建（POST） 限100（次/天）
 	public static String menu_create_url = "https://api.weixin.qq.com/cgi-bin/menu/create?"
 			+ "access_token=ACCESS_TOKEN";
+	public static String menu_create_url_crop = "https://qyapi.weixin.qq.com/cgi-bin/menu/create?"
+			+ "access_token=ACCESS_TOKEN&agentid=1";
+	
 	
 	
 	public static int createMenu(Menu menu,String accessToken){
@@ -171,7 +183,29 @@ public class WeixinUtil {
 	}
 	
 	
-	
+public static int createMenuCrop(Menu menu,String accessToken,String agentId){
+		
+		int result = 0;
+		//拼装创建菜单的url
+		String url = menu_create_url_crop.replace("ACCESS_TOKEN", accessToken).replace("1", agentId);
+		System.out.println(url);
+		//将菜单对象转换成json字符串
+		String jsonMenu = JSONObject.fromObject(menu).toString();
+		logger.info("jsonmenu字符串：\n"+JSONObject.fromObject(menu).toString());
+		//调用接口创建菜单
+		JSONObject jsonObject = httpRequest(url, "POST", jsonMenu);
+		
+		if(null != jsonObject){
+			if(0 != jsonObject.getInt("errcode")){
+				result = jsonObject.getInt("errcode");
+				logger.error("创建菜单失败，errcode:{"+jsonObject.getString("errcode")+"} errmsg:{"+jsonObject.getString("errmsg")+"}");
+			        
+			}
+		}
+		
+		
+		return result;
+	}
 	
 	
 	

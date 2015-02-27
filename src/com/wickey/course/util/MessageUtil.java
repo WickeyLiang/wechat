@@ -1,5 +1,6 @@
 package com.wickey.course.util;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Writer;
 import java.util.HashMap;
@@ -97,13 +98,13 @@ public class MessageUtil {
      * @return
      * @throws Exception
      */
-    public static Map<String, String> parseXml(HttpServletRequest request) throws Exception{
+    public static Map<String, String> parseXml(String request) throws Exception{
     	
     	//将解析结果存储在HashMap中
     	Map<String,String> map = new HashMap<String, String>();
     	
     	//从request中取得输入流
-    	InputStream inputStream = request.getInputStream();
+    	InputStream inputStream = new ByteArrayInputStream(request.getBytes("UTF-8"));
     	//读取输入流
     	SAXReader reader = new SAXReader();
     	Document document = reader.read(inputStream);

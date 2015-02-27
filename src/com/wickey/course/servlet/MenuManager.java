@@ -4,6 +4,7 @@ package com.wickey.course.servlet;
 
 import org.apache.log4j.Logger;
 
+import com.wickey.course.bean.paramsAPI.ParaAPI;
 import com.wickey.course.bean.pojo.AccessToken;
 import com.wickey.course.bean.pojo.Button;
 import com.wickey.course.bean.pojo.CommonButton;
@@ -17,19 +18,19 @@ public class MenuManager {
 	
 	
 	public void init(){
-		//第三方用户唯一凭证
+		/*//第三方用户唯一凭证
 		//String appId = "wx26370891564f6f7f";
 		String appId = "wx668290fdbd99f4d2";
 		//第三方用户唯一凭证密钥
 		//String appSecret = "74e670576d6abbcd5d40f45d758a4490";
-		String appSecret = "0a721e7a3751fa33525ac0c2aac855d1";
+		String appSecret = "0a721e7a3751fa33525ac0c2aac855d1";*/
 		//调用接口获取access_token
-		AccessToken at = WeixinUtil.getAccessToken(appId, appSecret);
+		AccessToken at = WeixinUtil.getAccessToken(ParaAPI.corpId, ParaAPI.secret);
 		
 		if(null != at){
 			//调用接口创建菜单
-			int result = WeixinUtil.createMenu(getMenu(), at.getToken());
-			
+			//int result = WeixinUtil.createMenu(getMenu(), at.getToken());
+			int result = WeixinUtil.createMenuCrop(getMenu(), at.getToken(),ParaAPI.agentId);
 			//判断菜单创建结果
 			if(0 == result){
 				logger.info("菜单创建成功！");

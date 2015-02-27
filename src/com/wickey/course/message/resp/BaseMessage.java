@@ -16,6 +16,9 @@ public class BaseMessage {
 	private String MsgType;
 	//被标志时，星标刚收到的消息
 	private int FuncFlag;
+	//企业应用id，企业号才有
+	private String AgentID;
+	
 	public String getToUserName() {
 		return ToUserName;
 	}
@@ -45,6 +48,12 @@ public class BaseMessage {
 	}
 	public void setFuncFlag(int funcFlag) {
 		FuncFlag = funcFlag;
+	}
+	public String getAgentID() {
+		return AgentID;
+	}
+	public void setAgentID(String agentID) {
+		AgentID = agentID;
 	}
 
 }

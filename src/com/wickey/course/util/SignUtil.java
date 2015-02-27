@@ -4,9 +4,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
+import com.wickey.course.bean.paramsAPI.ParaAPI;
+
 public class SignUtil {
 	//与接口配置信息中的token要一致
-	private static String token = "wickeyLiangweixin";
+	//private static String token = "wickeyLiangweixin";
 	
 	/**
 	 * 验证签名
@@ -19,7 +21,7 @@ public class SignUtil {
 	
 	public static boolean checkSignature(String signature,String timestamp,String nonce){
 		
-		String[] arr = new String[]{token,timestamp,nonce};
+		String[] arr = new String[]{ParaAPI.token,timestamp,nonce};
 		//将token、timestamp、nonce三个参数进行字典排序
 		Arrays.sort(arr);
 		StringBuilder content = new StringBuilder();
