@@ -10,6 +10,7 @@ import com.wickey.course.bean.pojo.Button;
 import com.wickey.course.bean.pojo.CommonButton;
 import com.wickey.course.bean.pojo.ComplexButton;
 import com.wickey.course.bean.pojo.Menu;
+import com.wickey.course.bean.pojo.ViewButton;
 import com.wickey.course.util.WeixinUtil;
 
 public class MenuManager {
@@ -57,10 +58,11 @@ public class MenuManager {
 		btn13.setType("click");
 		btn13.setKey("13");
 		
-		CommonButton btn21 = new CommonButton();
+		ViewButton btn21 = new ViewButton();
 		btn21.setName("我要点歌");
-		btn21.setType("click");
-		btn21.setKey("21");
+		btn21.setType("view");
+		btn21.setUrl("http://web.kugou.com/");
+		
 		
 		CommonButton btn31 = new CommonButton();
 		btn31.setName("关于我");
@@ -73,7 +75,7 @@ public class MenuManager {
 		
 		ComplexButton mainBtn2 = new ComplexButton();
 		mainBtn2.setName("轻松娱乐");
-		mainBtn2.setSub_button(new CommonButton[]{btn21});
+		mainBtn2.setSub_button(new ViewButton[]{btn21});
 		
 		ComplexButton mainBtn3 = new ComplexButton();
 		mainBtn3.setName("帮助");

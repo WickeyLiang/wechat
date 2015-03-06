@@ -91,6 +91,11 @@ public class MessageUtil {
      */  
     public static final String EVENT_TYPE_CLICK = "CLICK";
     
+    /** 
+     * 事件类型：VIEW(自定义菜单点击访问页面) 
+     */  
+    public static final String EVENT_TYPE_VIEW = "VIEW";
+    
     /**
      * 解析微信发来的请求（XML）
      * 
