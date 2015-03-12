@@ -17,7 +17,7 @@ public class BaiduTransService {
 	 */
 	
 	public static String httpRequest(String requestUrl){
-		System.out.println("abcdef");
+		System.out.println("abcdefadsafdsfasdff");
 		StringBuffer buffer = new StringBuffer();
 		try {
 			URL url = new URL(requestUrl);
