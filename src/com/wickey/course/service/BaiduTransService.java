@@ -71,17 +71,5 @@ public class BaiduTransService {
 		}
 		return result;
 	}
-	
-	public static String urlEncodeUTF82(String source){
-		String result = source;
-		try {
-			result = java.net.URLEncoder.encode(source, "utf-8"); 
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		return result;
-	}
-	
 
 }
