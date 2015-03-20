@@ -48,6 +48,7 @@ public class Sample {
 			sEchoStr = wxcpt.VerifyURL(sVerifyMsgSig, sVerifyTimeStamp,
 					sVerifyNonce, sVerifyEchoStr);
 			System.out.println("verifyurl echostr: " + sEchoStr);
+			System.out.println("abcd");
 			// 验证URL成功，将sEchoStr返回
 			// HttpUtils.SetResponse(sEchoStr);
 		} catch (Exception e) {
