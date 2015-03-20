@@ -47,6 +47,7 @@ public class CoreService {
 	public static String processRequest(String request){
 		String respMessage = null;
 		try {
+			System.out.println("xxx");
 			//默认返回的文本消息内容
 			String respContent = "请求处理异常，请稍后尝试！";
 			List respContent1 = null;
