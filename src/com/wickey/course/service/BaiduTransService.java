@@ -19,6 +19,7 @@ public class BaiduTransService {
 	public static String httpRequest(String requestUrl){
 		StringBuffer buffer = new StringBuffer();
 		try {
+			System.out.println("test");
 			URL url = new URL(requestUrl);
 			HttpURLConnection httpUrlConn = (HttpURLConnection) url.openConnection();
 			
