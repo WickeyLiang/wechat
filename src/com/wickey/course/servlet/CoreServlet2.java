@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.wickey.course.service.CoreService;
+import com.wickey.course.service.CoreService2;
 import com.wickey.course.util.SignUtil;
 
 public class CoreServlet2 extends HttpServlet{
@@ -49,7 +50,7 @@ public class CoreServlet2 extends HttpServlet{
         response.setCharacterEncoding("UTF-8");  
   
         // 调用核心业务类接收消息、处理消息  
-        String respMessage = CoreService.processRequest(request.toString());  
+        String respMessage = CoreService2.processRequest(request);  
           
         // 响应消息  
         PrintWriter out = response.getWriter();  
