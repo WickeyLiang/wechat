@@ -17,7 +17,6 @@ public class BaiduTransService {
 	 */
 	
 	public static String httpRequest(String requestUrl){
-		System.out.println("程序从vverve");
 		StringBuffer buffer = new StringBuffer();
 		try {
 			URL url = new URL(requestUrl);

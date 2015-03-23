@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServlet;
 
 import org.apache.log4j.Logger;
 
+import com.wickey.course.util.TokenThread;
+
 
 
 
@@ -24,9 +26,11 @@ public class InitServlet extends HttpServlet{
 	
 	
 	public void init() throws ServletException{
-		//System.out.println("abcd");
-		logger.info("创建菜单中~~~~");
-		new MenuManager().init();
+		logger.info("启动定期获取accessToken线程");
+		new Thread(new TokenThread()).start();
+		/*logger.info("创建菜单中~~~~");
+		new MenuManager().init();*/
+		
 	}
 	
 }

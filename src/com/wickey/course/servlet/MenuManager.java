@@ -11,6 +11,7 @@ import com.wickey.course.bean.pojo.CommonButton;
 import com.wickey.course.bean.pojo.ComplexButton;
 import com.wickey.course.bean.pojo.Menu;
 import com.wickey.course.bean.pojo.ViewButton;
+import com.wickey.course.util.TokenThread;
 import com.wickey.course.util.WeixinUtil;
 
 public class MenuManager {
@@ -26,8 +27,9 @@ public class MenuManager {
 		//String appSecret = "74e670576d6abbcd5d40f45d758a4490";
 		String appSecret = "0a721e7a3751fa33525ac0c2aac855d1";*/
 		//调用接口获取access_token
-		AccessToken at = WeixinUtil.getAccessToken(ParaAPI.corpId, ParaAPI.secret);
-		
+		//AccessToken at = WeixinUtil.getAccessToken(ParaAPI.corpId, ParaAPI.secret);
+		AccessToken at = TokenThread.accessToken;
+		System.out.println(at);
 		if(null != at){
 			//调用接口创建菜单
 			//int result = WeixinUtil.createMenu(getMenu(), at.getToken());

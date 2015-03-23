@@ -124,13 +124,10 @@ public class WeixinUtil {
 	
 	public static AccessToken getAccessToken(String appid,String appsecret){
 		
-		System.out.println(appid);
 		AccessToken accessToken = null;
 		//String requestUrl = access_token_url.replace("APPID", appid).replace("APPSECRET", appsecret);
 		String requestUrl = access_token_url_crop.replaceAll("=id", "="+appid).replace("=secrect", "="+appsecret);
-		System.out.println(requestUrl);
 		JSONObject jsonObject = httpRequest(requestUrl, "GET", null);
-		System.out.println(jsonObject.toString());
 		if(null != jsonObject){
 			logger.info("收到的access_token："+jsonObject.getString("access_token")+"\n收到的expires_in："+jsonObject.getInt("expires_in"));
 			//logger.info("收到的access_token："+jsonObject.getString("access_token"));
