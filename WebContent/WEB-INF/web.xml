@@ -10,6 +10,14 @@
     <url-pattern>/coreServlet</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>coreServlet2</servlet-name>
+    <servlet-class>com.wickey.course.servlet.CoreServlet2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>coreServlet2</servlet-name>
+    <url-pattern>/coreServlet2</url-pattern>
+  </servlet-mapping>
+  <servlet>
   	<servlet-name>initServlet</servlet-name>
   	<servlet-class>com.wickey.course.servlet.InitServlet</servlet-class>
   	<load-on-startup>1</load-on-startup>
