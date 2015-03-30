@@ -89,8 +89,10 @@ public class CoreService {
 				
 			}else if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)){
 				respContent = "发送的是图片信息，如需帮助回复？";
-			}else if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LOCATION)){
+			}else if(msgType.equalsIgnoreCase(MessageUtil.REQ_MESSAGE_TYPE_LOCATION)){
 				respContent = "发送的是地理位置信息，如需帮助回复？";
+				
+				
 			}else if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LINK)){
 				respContent = "发送的是链接信息，如需帮助回复？";
 			}else if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_VOICE)){

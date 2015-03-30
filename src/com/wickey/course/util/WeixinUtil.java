@@ -180,7 +180,7 @@ public class WeixinUtil {
 	}
 	
 	
-public static int createMenuCrop(Menu menu,String accessToken,String agentId){
+	public static int createMenuCrop(Menu menu,String accessToken,String agentId){
 		
 		int result = 0;
 		//拼装创建菜单的url
@@ -204,7 +204,22 @@ public static int createMenuCrop(Menu menu,String accessToken,String agentId){
 		return result;
 	}
 	
+	public final static String getAllCropUserId_url = 
+			"https://qyapi.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN&userid=lisi";
 	
+	public final static String getOpenId_url = 
+			"https://api.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN&next_openid=NEXT_OPENID";
+	
+	
+	public static void getUserInfo(String accessToken){
+		String url = getAllCropUserId_url.replace("ACCESS_TOKEN", accessToken).replace("lisi", "394580093@qq.com");
+		System.out.println(url);
+		JSONObject jsonObject = httpRequest(getAllCropUserId_url,"GET",null);
+		System.out.println(jsonObject.toString());
+		
+		
+	}
+
 	
 	
 	
