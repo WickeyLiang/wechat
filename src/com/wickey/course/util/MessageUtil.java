@@ -19,6 +19,7 @@ import com.thoughtworks.xstream.core.util.QuickWriter;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import com.thoughtworks.xstream.io.xml.XppDriver;
+import com.wickey.course.message.req.CropLocation;
 import com.wickey.course.message.resp.Article;
 import com.wickey.course.message.resp.MusicMessage;
 import com.wickey.course.message.resp.NewsMessage;
@@ -164,6 +165,16 @@ public class MessageUtil {
     	xstream.alias("xml", newsMessage.getClass());
     	xstream.alias("item", new Article().getClass());
     	return xstream.toXML(newsMessage);
+    }
+    /**
+     * 
+     * @param cropLocation 企业号地理位置对象
+     * @return
+     */
+    
+    public static String cropLocationMessageToXml(CropLocation cropLocation){
+    	xstream.alias("xml", cropLocation.getClass());
+    	return xstream.toXML(cropLocation);
     }
     
     
