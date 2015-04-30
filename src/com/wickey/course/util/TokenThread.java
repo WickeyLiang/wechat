@@ -9,8 +9,13 @@ public class TokenThread implements Runnable{
 	
 	private Logger logger = Logger.getLogger(this.getClass());
 	
-	public static String appid = ParaAPI.corpId;
-	public static String appsecret = ParaAPI.secret;
+	//企业号
+	//public static String appid = ParaAPI.corpId;
+	//public static String appsecret = ParaAPI.secret;
+	//测试号
+	public static String appid = ParaAPI.appId_test;
+	public static String appsecret = ParaAPI.appSecret_test;
+	
 	public static AccessToken accessToken = null;
 	
 	@Override

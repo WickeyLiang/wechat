@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.URL;
+import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -14,12 +15,21 @@ import javax.net.ssl.TrustManager;
 
 import org.apache.log4j.Logger;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+
+
+
+
+
 
 
 
 import com.wickey.course.bean.pojo.AccessToken;
 import com.wickey.course.bean.pojo.Menu;
+import com.wickey.course.bean.userbean.OpenID;
+import com.wickey.course.bean.userbean.UserInfo;
+import com.wickey.course.bean.userbean.UserList;
 
 
 
@@ -125,8 +135,8 @@ public class WeixinUtil {
 	public static AccessToken getAccessToken(String appid,String appsecret){
 		
 		AccessToken accessToken = null;
-		//String requestUrl = access_token_url.replace("APPID", appid).replace("APPSECRET", appsecret);
-		String requestUrl = access_token_url_crop.replaceAll("=id", "="+appid).replace("=secrect", "="+appsecret);
+		String requestUrl = access_token_url.replace("APPID", appid).replace("APPSECRET", appsecret);
+		//String requestUrl = access_token_url_crop.replaceAll("=id", "="+appid).replace("=secrect", "="+appsecret);
 		JSONObject jsonObject = httpRequest(requestUrl, "GET", null);
 		if(null != jsonObject){
 			logger.info("收到的access_token："+jsonObject.getString("access_token")+"\n收到的expires_in："+jsonObject.getInt("expires_in"));
@@ -210,17 +220,53 @@ public class WeixinUtil {
 	public final static String getOpenId_url = 
 			"https://api.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN&next_openid=NEXT_OPENID";
 	
-	
-	public static void getUserInfo(String accessToken){
-		String url = getAllCropUserId_url.replace("ACCESS_TOKEN", accessToken).replace("lisi", "394580093@qq.com");
-		System.out.println(url);
-		JSONObject jsonObject = httpRequest(getAllCropUserId_url,"GET",null);
-		System.out.println(jsonObject.toString());
+	/**
+	 * 获取openid
+	 * @param accessToken
+	 * @return
+	 */
+	public static List getOpenID(String accessToken){
+		//String url = getAllCropUserId_url.replace("ACCESS_TOKEN", accessToken).replace("lisi", "394580093@qq.com");
+		String url = getOpenId_url.replace("ACCESS_TOKEN", accessToken).replace("NEXT_OPENID", "");
+		//System.out.println(url);
+		JSONObject jsonObject = httpRequest(url,"GET",null);
+		UserList ul = (UserList) JSONObject.toBean(jsonObject, UserList.class);
+		//System.out.println(jsonObject.toString());
+		List openidList = ul.getData().getOpenid();
+		/*System.out.println(ul.getTotal());
+		System.out.println(ul.getCount());
+		System.out.println(openidList);*/
+		return openidList;
 		
+	}
+	
+	
+	public final static String getUserInfo_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+	
+	/**
+	 * 获取用户基本信息
+	 * @param accessToken
+	 * @param openid
+	 */
+	public static void getUserInfo(String accessToken,String openid){
+		String url = getUserInfo_url.replace("ACCESS_TOKEN", accessToken).replace("OPENID", openid);
+		System.out.println(url);
+		JSONObject jsonObject = httpRequest(url,"GET",null);
+		System.out.println(jsonObject.toString());
+		UserInfo userInfo = (UserInfo) JSONObject.toBean(jsonObject, UserInfo.class);
+		System.out.println(userInfo.getCity());
 		
 	}
 
+	public final static String 
+	getOAuth2_code_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";
 	
+	public static String getOAuth2_code(String redirect_uri){
+		
+		
+		
+		return null;
+	}
 	
 	
 	

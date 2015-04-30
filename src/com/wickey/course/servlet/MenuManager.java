@@ -45,10 +45,10 @@ public class MenuManager {
 	}
 	
 	private static Menu getMenu(){
-		CommonButton btn11 = new CommonButton();
+		ViewButton btn11 = new ViewButton();
 		btn11.setName("天气预报");
-		btn11.setType("click");
-		btn11.setKey("11");
+		btn11.setType("view");
+		btn11.setUrl("http://web.kugou.com/");
 		
 		CommonButton btn12 = new CommonButton();
 		btn12.setName("公交查询");
@@ -73,7 +73,7 @@ public class MenuManager {
 		
 		ComplexButton mainBtn1 = new ComplexButton();
 		mainBtn1.setName("生活助手");
-		mainBtn1.setSub_button(new CommonButton[]{btn11,btn12});
+		mainBtn1.setSub_button(new Button[]{btn11,btn12});
 		
 		ComplexButton mainBtn2 = new ComplexButton();
 		mainBtn2.setName("轻松娱乐");

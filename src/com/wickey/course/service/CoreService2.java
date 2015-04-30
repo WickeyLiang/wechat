@@ -70,7 +70,7 @@ public class CoreService2 {
 			textMessage.setCreateTime(new Date().getTime());
 			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
 			textMessage.setFuncFlag(0);
-			textMessage.setAgentID(ParaAPI.agentId);
+			//textMessage.setAgentID(ParaAPI.agentId);
 			
 			if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)){
 				if(content.equals("?")||content.equals("？")){
