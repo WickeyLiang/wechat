@@ -47,7 +47,6 @@ public class CoreService2 {
 	public static String processRequest(HttpServletRequest request){
 		String respMessage = null;
 		try {
-			System.out.println("xxx");
 			//默认返回的文本消息内容
 			String respContent = "请求处理异常，请稍后尝试！";
 			List respContent1 = null;
@@ -89,7 +88,7 @@ public class CoreService2 {
 				
 			}else if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)){
 				respContent = "发送的是图片信息，如需帮助回复？";
-			}else if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LOCATION)){
+			}else if(msgType.equalsIgnoreCase(MessageUtil.REQ_MESSAGE_TYPE_LOCATION)){
 				respContent = "发送的是地理位置信息，如需帮助回复？";
 			}else if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LINK)){
 				respContent = "发送的是链接信息，如需帮助回复？";
@@ -121,6 +120,9 @@ public class CoreService2 {
 					}
 				}else if(eventType.equalsIgnoreCase(MessageUtil.EVENT_TYPE_VIEW)){
 					respContent = "希望网速给力~~~";
+				}else if(eventType.equalsIgnoreCase(MessageUtil.REQ_MESSAGE_TYPE_LOCATION)){
+					String abc = requestMap.get("Latitude");
+					respContent = abc;
 				}
 			}
 			

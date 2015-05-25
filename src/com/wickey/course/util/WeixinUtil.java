@@ -132,11 +132,16 @@ public class WeixinUtil {
 	 * @return
 	 */
 	
-	public static AccessToken getAccessToken(String appid,String appsecret){
+	public static AccessToken getAccessToken(String appid,String appsecret,String flag){
 		
 		AccessToken accessToken = null;
-		String requestUrl = access_token_url.replace("APPID", appid).replace("APPSECRET", appsecret);
-		//String requestUrl = access_token_url_crop.replaceAll("=id", "="+appid).replace("=secrect", "="+appsecret);
+		String requestUrl = "";
+		if("test".equals(flag)){
+			requestUrl = access_token_url.replace("APPID", appid).replace("APPSECRET", appsecret);
+		}else{
+			requestUrl = access_token_url_crop.replaceAll("=id", "="+appid).replace("=secrect", "="+appsecret);
+		}
+		logger.info("获取access_token的地址："+requestUrl);
 		JSONObject jsonObject = httpRequest(requestUrl, "GET", null);
 		if(null != jsonObject){
 			logger.info("收到的access_token："+jsonObject.getString("access_token")+"\n收到的expires_in："+jsonObject.getInt("expires_in"));

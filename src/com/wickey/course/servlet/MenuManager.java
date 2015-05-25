@@ -30,10 +30,11 @@ public class MenuManager {
 		//AccessToken at = WeixinUtil.getAccessToken(ParaAPI.corpId, ParaAPI.secret);
 		AccessToken at = TokenThread.accessToken;
 		System.out.println(at);
+		//at.setToken("1aA2a07cYHayVYoQcdyzJmK7BqAF-Zpte5jWRH12rOChsNvmuSQS0sGW_SRTdNzE_1ZXQU9HnBMdQ5DV-FrfQbBw-3Kb4ORvoFAaKzdGHks");
 		if(null != at){
 			//调用接口创建菜单
-			//int result = WeixinUtil.createMenu(getMenu(), at.getToken());
-			int result = WeixinUtil.createMenuCrop(getMenu(), at.getToken(),ParaAPI.agentId);
+			int result = WeixinUtil.createMenu(getMenu(), at.getToken());
+			//int result = WeixinUtil.createMenuCrop(getMenu(), at.getToken(),ParaAPI.agentId);
 			//判断菜单创建结果
 			if(0 == result){
 				logger.info("菜单创建成功！");

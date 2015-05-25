@@ -2,7 +2,7 @@ package com.wickey.course.service;
 
 import java.util.Map;
 
-public class CropLocationService {
+public class LocationService {
 	
 	
 	public String getCropLoca(Map<String,String> requestMap) throws Exception{
