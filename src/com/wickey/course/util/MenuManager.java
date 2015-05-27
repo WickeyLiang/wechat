@@ -1,4 +1,4 @@
-package com.wickey.course.servlet;
+package com.wickey.course.util;
 
 
 
@@ -11,8 +11,6 @@ import com.wickey.course.bean.pojo.CommonButton;
 import com.wickey.course.bean.pojo.ComplexButton;
 import com.wickey.course.bean.pojo.Menu;
 import com.wickey.course.bean.pojo.ViewButton;
-import com.wickey.course.util.TokenThread;
-import com.wickey.course.util.WeixinUtil;
 
 public class MenuManager {
 	
@@ -47,7 +45,7 @@ public class MenuManager {
 	
 	private static Menu getMenu(){
 		ViewButton btn11 = new ViewButton();
-		btn11.setName("天气预报");
+		btn11.setName("鉴权测试");
 		btn11.setType("view");
 		btn11.setUrl("http://web.kugou.com/");
 		

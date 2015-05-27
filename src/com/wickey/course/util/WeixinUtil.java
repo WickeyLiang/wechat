@@ -25,6 +25,8 @@ import net.sf.json.JSONObject;
 
 
 
+
+import com.wickey.course.bean.paramsAPI.ParaAPI;
 import com.wickey.course.bean.pojo.AccessToken;
 import com.wickey.course.bean.pojo.Menu;
 import com.wickey.course.bean.userbean.OpenID;
@@ -268,6 +270,8 @@ public class WeixinUtil {
 	
 	public static String getOAuth2_code(String redirect_uri){
 		
+		String url = getOAuth2_code_url.replace("APPID", ParaAPI.appId_test).replace("REDIRECT_URI", redirect_uri).replace("SCOPE", "snsapi_userinfo").replace("STATE", "abc");
+		System.out.println("回调地址："+url);
 		
 		
 		return null;

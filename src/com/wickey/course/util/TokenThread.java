@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 
 import com.wickey.course.bean.paramsAPI.ParaAPI;
 import com.wickey.course.bean.pojo.AccessToken;
-import com.wickey.course.servlet.MenuManager;
 
 public class TokenThread implements Runnable{
 	
