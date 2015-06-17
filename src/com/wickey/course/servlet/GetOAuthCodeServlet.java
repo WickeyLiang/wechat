@@ -17,7 +17,9 @@ public class GetOAuthCodeServlet extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException{
 		
-		
+		String code = request.getParameter("code");
+		String state = request.getParameter("state");
+		System.out.println(code);
 		
 	}
 	

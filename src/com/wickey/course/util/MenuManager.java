@@ -47,7 +47,9 @@ public class MenuManager {
 		ViewButton btn11 = new ViewButton();
 		btn11.setName("鉴权测试");
 		btn11.setType("view");
-		btn11.setUrl("http://web.kugou.com/");
+		String redirect_uri = "http://wickey.nat123.net/Oauth2Demo.jsp";
+		String url = WeixinUtil.getOauth2_url(redirect_uri);
+		btn11.setUrl(url);
 		
 		CommonButton btn12 = new CommonButton();
 		btn12.setName("公交查询");
